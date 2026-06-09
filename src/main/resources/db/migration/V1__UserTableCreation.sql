@@ -1,6 +1,5 @@
 CREATE TABLE employees (
-                           id BIGSERIAL PRIMARY KEY,
-                           employee_id VARCHAR(50),
+                           employee_id VARCHAR(50) PRIMARY KEY ,
                            first_name VARCHAR(100),
                            last_name VARCHAR(100),
                            department VARCHAR(100),
@@ -17,7 +16,7 @@ CREATE TABLE assets (
 
 CREATE TABLE asset_assignments (
                                    id BIGSERIAL PRIMARY KEY,
-                                   employee_id BIGINT REFERENCES employees(id),
+                                   employee_id BIGINT REFERENCES employees(employee_id),
                                    asset_id BIGINT REFERENCES assets(id),
                                    assigned_date DATE,
                                    returned_date DATE
