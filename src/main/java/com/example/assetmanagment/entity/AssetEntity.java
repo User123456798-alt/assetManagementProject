@@ -4,12 +4,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+
 @Entity
+@Data
+@AllArgsConstructor
 @Table(name = "asset")
 public class AssetEntity {
 
@@ -30,5 +33,13 @@ public class AssetEntity {
     private String status;
 
     public AssetEntity(){
+    }
+
+    public void returned(){
+        this.status = "AVAILABLE";
+    }
+
+    public void checkOut(){
+        this.status = "ASSIGNED";
     }
 }

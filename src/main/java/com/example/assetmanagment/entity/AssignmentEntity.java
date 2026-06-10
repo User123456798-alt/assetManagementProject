@@ -4,15 +4,17 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigInteger;
 import java.util.Date;
 
-@Setter
-@Getter
 @Entity
+@Data
+@AllArgsConstructor
 @Table(name = "asset_assignment")
 public class AssignmentEntity {
 
@@ -31,4 +33,9 @@ public class AssignmentEntity {
 
     @Column(name = "returned_date")
     private Date returnedDate;
+
+    public AssignmentEntity() {
+
+    }
+
 }

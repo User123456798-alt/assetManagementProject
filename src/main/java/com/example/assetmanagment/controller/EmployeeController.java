@@ -2,7 +2,6 @@ package com.example.assetmanagment.controller;
 
 import com.example.assetmanagment.dto.EmployeeDto;
 import com.example.assetmanagment.service.EmployeeService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -22,19 +21,29 @@ public class EmployeeController {
         return employeeService.findAllEmployees(page);
     }
 
+    @GetMapping("/reports/top-employee ")
+    public Page<String> mostAssigned(){
+        return employeeService.mostAssets();
+    }
+
     @GetMapping("/{id}")
     public EmployeeDto getEmployee(@PathVariable Integer id){
         return employeeService.findEmployee(id);
     }
 
     @PostMapping
-    public Page<EmployeeDto> addEmployee(EmployeeDto employeeDto){
-        return employeeService.addEmployee(employeeDto);
+    public EmployeeDto addEmployee(EmployeeDto employeeDto){
+        return employeeService.makeEmployee(employeeDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void removeEmployee(@PathVariable Integer id){
+        employeeService.removeEmployee(id);
     }
 
     @PutMapping
     public EmployeeDto updateEmployee(EmployeeDto employeeDto) throws Exception {
-        return employeeService.updateEmployee(employeeDto);
+        return employeeService.updateEmployee(employeeDto).orElse(null);
     }
 
 }
